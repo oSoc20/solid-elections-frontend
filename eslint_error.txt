@@ -1,0 +1,4 @@
+remove .lock 
+remove node_modules
+change eslint version in package.json to react version of elint
+yarn install
