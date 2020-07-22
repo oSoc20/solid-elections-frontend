@@ -3,6 +3,35 @@ import data from '../utils/demoData'
 
 
 export default function Tabel() {
+
+
+  let tableRows = []
+
+  data.income.items.map((item, id) => {
+    if (item.sub) {
+
+      item.sub.map((subItem, subId) => {
+        console.log('sub')
+        tableRows.push(
+          <tr key={subId}>
+            <td>{subItem.number} </td>
+            <td>{subItem.message}</td>
+            <td>{subItem.price}</td>
+          </tr>)
+
+        return true
+      })
+    }
+
+    tableRows.push(
+      <tr key={id}>
+        <td>{item.number} </td>
+        <td>{item.message}</td>
+        <td >{item.price}</td>
+      </tr>)
+    return true
+  })
+
   return (
     <table className="vl-data-table">
       <thead>
@@ -15,9 +44,11 @@ export default function Tabel() {
       </thead>
 
       <tbody>
-        {data.income.items.map((item, id) => {
+        {tableRows}
+        {/* {data.income.items.map((item, id) => {
           if (item.sub) {
             item.sub.map((subItem, subId) => {
+              console.log('sub')
               return (
                 <tr key={subId}>
                   <td>{subItem.number} </td>
@@ -34,7 +65,7 @@ export default function Tabel() {
               <td >{item.price}</td>
             </tr>)
         })
-        }
+        } */}
       </tbody>
     </table>
   )

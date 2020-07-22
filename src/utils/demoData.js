@@ -1,5 +1,11 @@
 let data =
 {
+  candidate: {
+    date: '01/01/2018',
+    name: 'Sander Loones',
+    party: 'N-VA',
+    location: 'Koksijde-Oostduinkerken'
+  },
   income: {
     title: 'Herkomst van de financiering',
     items: [
