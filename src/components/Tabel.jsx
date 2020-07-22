@@ -2,14 +2,20 @@ import React from 'react'
 import data from '../utils/demoData'
 
 
-export default function Tabel() {
+export default function Tabel(props) {
 
 
   let tableRows = []
 
-  data.income.items.map((item, id) => {
-    if (item.sub) {
+  props.data.items.map((item, id) => {
 
+    tableRows.push(
+      <tr className="bold" key={id}>
+        <td>{item.number} </td>
+        <td>{item.message}</td>
+        <td >{item.price}</td>
+      </tr>)
+    if (item.sub) {
       item.sub.map((subItem, subId) => {
         console.log('sub')
         tableRows.push(
@@ -18,17 +24,9 @@ export default function Tabel() {
             <td>{subItem.message}</td>
             <td>{subItem.price}</td>
           </tr>)
-
         return true
       })
     }
-
-    tableRows.push(
-      <tr key={id}>
-        <td>{item.number} </td>
-        <td>{item.message}</td>
-        <td >{item.price}</td>
-      </tr>)
     return true
   })
 
@@ -45,6 +43,11 @@ export default function Tabel() {
 
       <tbody>
         {tableRows}
+        <tr className="bold total" >
+          <td colSpan="2">TOTAAL BEDRAG </td>
+          <td>{props.data.total}</td>
+
+        </tr>
         {/* {data.income.items.map((item, id) => {
           if (item.sub) {
             item.sub.map((subItem, subId) => {
