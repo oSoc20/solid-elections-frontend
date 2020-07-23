@@ -11,7 +11,7 @@ export default function Tabel(props) {
 
     tableRows.push(
       <tr className="bold" key={id}>
-        <td>{item.number} </td>
+        <td>{item.number}.</td>
         <td>{item.message}</td>
         <td >{item.price}</td>
       </tr>)
@@ -20,7 +20,7 @@ export default function Tabel(props) {
         console.log('sub')
         tableRows.push(
           <tr key={subId}>
-            <td>{subItem.number} </td>
+            <td>{subItem.number}. </td>
             <td>{subItem.message}</td>
             <td>{subItem.price}</td>
           </tr>)

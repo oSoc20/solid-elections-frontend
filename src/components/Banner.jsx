@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Banner() {
   return (
@@ -10,10 +11,12 @@ export default function Banner() {
         <div className="vl-layout">
           <div className="vl-content-header__content">
             <div className=" vl-content-header__content vl-content-header__context vl-content-header__context--has-link">
-              <a className="vl-content-header__context__link" href="http://www.google.com">Campaigndetail database</a>
+              <Link className="vl-content-header__context__link" to="/">Campaigndetail database </Link>
             </div>
             <h2 className="vl-content-header__title vl-content-header__title--has-link">
-              <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a>
+              {/* <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a> */}
+
+              <Link className="vl-content-header__title__link" to="/party">Koksijde-Oostduinkerken </Link>
             </h2>
           </div>
         </div>

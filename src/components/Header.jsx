@@ -1,13 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
     <header className="ex-header au-c-main-header">
     <div className="au-c-main-header__title-group">
       <div tabIndex="-1" className="au-u-hidden-visually ember-sr-only ember-sr-only-focusable" id="ember-a11y-refocus-nav-message">
-    
         Nieuwe pagina geladen. Je kan nu verder navigeren.
-      
   </div>
       <a href="https://www.vlaanderen.be/nl" className="au-c-brand au-c-brand--link ">
     <div className="au-c-brand__logo ex-header-icon">
@@ -20,10 +19,7 @@ export default function Header() {
       <span className="au-c-brand__main">Vlaanderen</span>
     </p>
   </a>
-  
-      <a href="/ember-appuniversum/" className="au-c-main-header__title au-c-main-header__title--link">
-        Solid Elections
-      </a>
+        <Link className="au-c-main-header__title au-c-main-header__title--link" to="/">Solid Elections </Link>
       <a href="#content" className="au-c-main-header__skiplink">Naar de hoofdinhoud</a>
     </div>
     <nav className="au-c-main-header__actions">
