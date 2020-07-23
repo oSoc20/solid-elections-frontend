@@ -13,7 +13,7 @@ export default function Banner() {
               <a className="vl-content-header__context__link" href="http://www.google.com">Campaigndetail database</a>
             </div>
             <h2 className="vl-content-header__title vl-content-header__title--has-link">
-              <a className="vl-content-header__title__link" href="http://www.google.com">Koksijde-Oostduinkerken</a>
+              <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a>
             </h2>
           </div>
         </div>
