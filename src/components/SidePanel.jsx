@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { withRouter, useParams, Link } from "react-router-dom";
+import { withRouter, useParams } from "react-router-dom";
 import demoPerson from '../utils/demoCandidate'
+
 
 let SidePanel = (props) => {
 
-  const { cityName } = useParams();
+  const { cityName } = useParams()
+
   const isCurrentCandidate = (name, familyName) => {
-    console.log(props.currentPerson)
     if (props.currentPerson.name) {
       return (
         props.currentPerson.name.value.toLowerCase() === name.toLowerCase()
@@ -15,8 +16,6 @@ let SidePanel = (props) => {
       )
     }
   }
-
-
 
   return (
     <div className="side-panel vl-col--3-12">
@@ -52,51 +51,48 @@ let SidePanel = (props) => {
 
         <div className="members__list">
 
-          <Link to="/" className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value) ? "members--person selected" : "members--person bold"}>
-            <div className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value)
+          <div onClick={props.onClick} data-candidate={demoPerson.name.value.toLocaleLowerCase() + " " + demoPerson.familyName.value.toLocaleLowerCase()} className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value) ? "members--person selected" : "members--person bold"}>
+            <div data-candidate={demoPerson.name.value + " " + demoPerson.familyName.value} className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value)
               ? `vl-badge vl-badge--initials vl-badge--action`
               : "vl-badge vl-badge--initials vl-badge--alt"}>
               <span>{1}</span>
             </div>
-            <div className="member--name">{demoPerson.name.value}  {demoPerson.familyName.value}</div>
-          </Link>
+            <div data-candidate={demoPerson.name.value.toLocaleLowerCase() + " " + demoPerson.familyName.value.toLocaleLowerCase()}
+              className="member--name">{demoPerson.name.value}  {demoPerson.familyName.value}</div>
+          </div>
 
 
-          {props.partyMembers &&
+          {(props.partyMembers && props.currentPerson.name) &&
             props.partyMembers.map((member, id) => {
-              console.log(isCurrentCandidate(member.name.value, member.familyName.value))
               if (member.webID) {
                 return (
-                  <Link key={id} to="/" className={isCurrentCandidate(member.name.value, member.familyName.value) ? "members--person selected" : "members--person bold"}>
-                    <div className={isCurrentCandidate(member.name.value, member.familyName.value)
-                      ? `vl-badge vl-badge--initials vl-badge--action`
-                      : "vl-badge vl-badge--initials vl-badge--alt"}>
+                  <div onClick={props.onClick} key={id} data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
+                    className={isCurrentCandidate(member.name.value, member.familyName.value) ? "members--person selected" : "members--person bold"}>
+                    <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
+                      className={isCurrentCandidate(member.name.value, member.familyName.value)
+                        ? `vl-badge vl-badge--initials vl-badge--action`
+                        : "vl-badge vl-badge--initials vl-badge--alt"}>
                       <span>{id + 2}</span>
                     </div>
-                    <div className="member--name">{member.name.value}  {member.familyName.value}</div>
-                  </Link>)
+                    <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
+                      className="member--name">{member.name.value}  {member.familyName.value}</div>
+                  </div>)
               } else {
                 return (
-                  <Link key={id} to="/" className="members--person detail__member--disable">
-                    <div className="vl-badge vl-badge--initials vl-badge--alt">
+                  <div onClick={props.onClick} key={id} data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()} className="members--person detail__member--disable">
+                    <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
+                      className="vl-badge vl-badge--initials vl-badge--alt">
                       <span>{id + 2}</span>
                     </div>
-                    <div className="member--name">{member.name.value}  {member.familyName.value}</div>
-                  </Link>
+                    <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
+                      className="member--name">{member.name.value}  {member.familyName.value}</div>
+                  </div>
                 )
-
               }
-
-
             })
           }
-
-
-
-
         </div>
       </div>
-
     </div>
   )
 }

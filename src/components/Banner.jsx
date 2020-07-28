@@ -15,19 +15,11 @@ let Banner = ({ match }) => {
             <div className=" vl-content-header__content vl-content-header__context vl-content-header__context--has-link">
               <Link className="vl-content-header__context__link" to="/">Campaigndetail database </Link>
             </div>
-
             {match.path.includes('/stad/', 0) &&
               <h2 className="vl-content-header__title vl-content-header__title--has-link">
                 <Link className="vl-content-header__title__link city__name" to={`/stad/${match.params.cityName}`}>{match.params.cityName} </Link>
               </h2>
             }
-
-            {/* <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a> */}
-            {/* 
-            <h2 className="vl-content-header__title vl-content-header__title--has-link">
-              <Link className="vl-content-header__title__link" to="/party">Koksijde-Oostduinkerken </Link>
-            </h2> 
-            */}
           </div>
         </div>
       </div>

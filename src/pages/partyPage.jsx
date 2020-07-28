@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, useParams, withRouter } from 'react-router-dom';
+import { useHistory, useParams, withRouter } from 'react-router-dom';
 
 import demoPerson from '../utils/demoCandidate'
 
@@ -13,11 +13,13 @@ const PartyPage = () => {
   let history = useHistory()
   let { cityName, partyName } = useParams()
   const [candidates, setCandidates] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     CandidateService.getCandidates(LocalState.getCurrentParty())
       .then(res => {
         setCandidates(sortCandidates(res.result))
+        setLoading(false)
       }).catch((e) => console.log('nothing found', e))
   }, [])
 
@@ -27,14 +29,17 @@ const PartyPage = () => {
       return (candidate.name.value.toLowerCase() + " " + candidate.familyName.value.toLowerCase() === e.target.getAttribute('data-candidate'))
     })
 
-    if (e.target.getAttribute('data-candidate') === demoPerson.name.value.toLowerCase() + " " + demoPerson.familyName.value.toLowerCase()) {
-      LocalState.setCurrentCandidate(demoPerson.personURI.value)
-      history.push(`/stad/${cityName}/${partyName}/${demoPerson.name.value + demoPerson.familyName.value}`)
-    } else {
-      LocalState.setCurrentCandidate(selectedCandidate.personURI.value)
-      history.push(`/stad/${cityName}/${partyName}/${selectedCandidate.name.value + selectedCandidate.familyName.value}`)
+    if (!loading) {
+      if (e.target.getAttribute('data-candidate') === demoPerson.name.value.toLowerCase() + " " + demoPerson.familyName.value.toLowerCase()) {
+        LocalState.setCurrentCandidate(demoPerson.personURI.value)
+        history.push(`/stad/${cityName}/${partyName}/${demoPerson.name.value + demoPerson.familyName.value}`)
+      } else {
+        if (selectedCandidate) {
+          LocalState.setCurrentCandidate(selectedCandidate.personURI.value)
+          history.push(`/stad/${cityName}/${partyName}/${selectedCandidate.name.value + selectedCandidate.familyName.value}`)
+        }
+      }
     }
-
   }
 
   return <div className="home page__content vl-layout vl-region vl-typography">

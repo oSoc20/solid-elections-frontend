@@ -1,32 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
-import BaseLayout from '../layouts/base';
 import AutoSuggest from 'react-autosuggest'
 
 import { CityService } from '../api'
 import LocalState from '../utils/state'
 
-const companies = [
-  { id: 1, name: "City 1" },
-  { id: 2, name: "City 12" },
-  { id: 3, name: "City 13" },
-  { id: 4, name: "City 14" },
-  { id: 5, name: "City 15" },
-  { id: 6, name: "City 16" },
-  { id: 7, name: "Bity 17" },
-  { id: 8, name: "Bity 18" },
-  { id: 9, name: "Bity 19" }
-];
-
-
-
 const HomePage = () => {
   let history = useHistory();
-  const [searchTerm, setSearchTerm] = useState()
-  //const [suggestions, setSuggestions] = useState([])
+
   const [cities, setCities] = useState([])
-
-
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 

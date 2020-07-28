@@ -11,7 +11,6 @@ const BaseLayout = (props) => {
 
   return (
     <div className="App main__app">
-      
       <Header />
       <Nav />
       <Banner />

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, withRouter } from 'react-router-dom';
-
-import BaseLayout from '../layouts/base';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 const SearchResultPage = () => {
   return <div className="home page__content">detail page</div>;

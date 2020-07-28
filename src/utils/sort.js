@@ -1,8 +1,6 @@
 const sortParties = (parties) => {
-
-
+  
   const compare = (a, b) => {
-
     let first = a.listName.value.toLowerCase()
     let second = b.listName.value.toLowerCase()
     // a should come before b in the sorted order
@@ -23,10 +21,7 @@ const sortParties = (parties) => {
 }
 
 const sortCandidates = (candidates) => {
-
-
   const compare = (a, b) => {
-
     let first = a.name.value.toLowerCase()
     let second = b.name.value.toLowerCase()
     // a should come before b in the sorted order
@@ -40,7 +35,6 @@ const sortCandidates = (candidates) => {
       return 0;
     }
   }
-
   let sorted = candidates.sort(compare)
 
   return sorted

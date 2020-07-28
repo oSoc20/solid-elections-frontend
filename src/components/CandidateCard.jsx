@@ -8,7 +8,6 @@ export default function CandidateCard(props) {
       <h3 data-candidate={props.name?.toLowerCase()} className="vl-content-header__title vl-content-header__title--has-link">
         {props.name}
       </h3>
-
       {props.submitted ?
         (<div className="submitted__good">Aangifte</div>
         ) :
@@ -16,7 +15,6 @@ export default function CandidateCard(props) {
           <div className="submitted__bad">Geen Aangifte</div>
         )
       }
-
     </div>
   )
 }
