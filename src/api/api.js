@@ -4,9 +4,10 @@ import axios from 'axios'
 // Default Axios Instance
 export const axiosInstance = axios.create({
   //baseURL: 'https://my-training.herokuapp.com/api'
-  baseURL: 'http://api.sep.osoc.be'
+  baseURL: 'https://api.sep.osoc.be'
 })
 
-export const setAuthorizationHeader = (mtToken) => {
-  axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${mtToken}`
-}
+// export const setAuthorizationHeader = (mtToken) => {
+//   axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${mtToken}`
+// }
+

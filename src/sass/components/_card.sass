@@ -1,0 +1,28 @@
+.list__card
+  height: 100px
+  //background-color: lightblue
+  //border: 2px solid black
+  margin-left: 0rem !important
+  padding-left: 0 !important
+  margin-bottom: 2rem
+  cursor: pointer
+  display: flex
+  justify-content: center
+  align-items: center
+  text-transform: capitalize
+  flex-direction: column
+  &:hover
+    background-color: $au-yellow-300
+  h3
+    text-align: center
+
+  .submitted__good
+    margin-top: $ws-xs
+    color: $au-blue-700
+
+  .submitted__bad
+    color: $au-red-500
+
+  &--disabled
+    opacity: 0.6
+    cursor: not-allowed

@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from "react-router-dom";
 
-export default function Banner() {
+let Banner = ({ match }) => {
+
   return (
     <header className=" ex-banner vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context vl-content-header--has-actions vl-content-header--alt">
       <div className="vl-content-header__wrapper">
@@ -13,14 +15,25 @@ export default function Banner() {
             <div className=" vl-content-header__content vl-content-header__context vl-content-header__context--has-link">
               <Link className="vl-content-header__context__link" to="/">Campaigndetail database </Link>
             </div>
-            <h2 className="vl-content-header__title vl-content-header__title--has-link">
-              {/* <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a> */}
 
+            {match.path.includes('/stad/', 0) &&
+              <h2 className="vl-content-header__title vl-content-header__title--has-link">
+                <Link className="vl-content-header__title__link city__name" to={`/stad/${match.params.cityName}`}>{match.params.cityName} </Link>
+              </h2>
+            }
+
+            {/* <a className="vl-content-header__title__link" href="/party">Koksijde-Oostduinkerken</a> */}
+            {/* 
+            <h2 className="vl-content-header__title vl-content-header__title--has-link">
               <Link className="vl-content-header__title__link" to="/party">Koksijde-Oostduinkerken </Link>
-            </h2>
+            </h2> 
+            */}
           </div>
         </div>
       </div>
     </header>
   )
 }
+
+
+export default withRouter(Banner)

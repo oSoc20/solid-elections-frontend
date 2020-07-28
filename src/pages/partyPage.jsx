@@ -1,22 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, withRouter } from 'react-router-dom';
+import { Redirect, useHistory, useParams, withRouter } from 'react-router-dom';
 
-import BaseLayout from '../layouts/base';
-import SidePanel from '../components/SidePanel'
-import Tabel from '../components/Tabel'
+import demoPerson from '../utils/demoCandidate'
 
-import data from '../utils/demoData'
+import LocalState from '../utils/state'
+import { CandidateService } from '../api'
+import CandidateCard from '../components/CandidateCard'
+import { sortCandidates } from '../utils/sort'
 
 const PartyPage = () => {
-  return <div className="home page__content vl-region">
-    <div className="vl-layout content__wrapper vl-grid">
-      <SidePanel data="helo data" />
-      <div className="main-content  vl-col--9-12">
 
-        <Tabel data={data.income} />
+  let history = useHistory()
+  let { cityName, partyName } = useParams()
+  const [candidates, setCandidates] = useState([])
 
-        <Tabel data={data.expense} />
-      </div>
+  useEffect(() => {
+    CandidateService.getCandidates(LocalState.getCurrentParty())
+      .then(res => {
+        setCandidates(sortCandidates(res.result))
+      }).catch((e) => console.log('nothing found', e))
+  }, [])
+
+  const onClickCandidateCard = (e) => {
+
+    let selectedCandidate = candidates.find(candidate => {
+      return (candidate.name.value.toLowerCase() + " " + candidate.familyName.value.toLowerCase() === e.target.getAttribute('data-candidate'))
+    })
+
+    if (e.target.getAttribute('data-candidate') === demoPerson.name.value.toLowerCase() + " " + demoPerson.familyName.value.toLowerCase()) {
+      LocalState.setCurrentCandidate(demoPerson.personURI.value)
+      history.push(`/stad/${cityName}/${partyName}/${demoPerson.name.value + demoPerson.familyName.value}`)
+    } else {
+      LocalState.setCurrentCandidate(selectedCandidate.personURI.value)
+      history.push(`/stad/${cityName}/${partyName}/${selectedCandidate.name.value + selectedCandidate.familyName.value}`)
+    }
+
+  }
+
+  return <div className="home page__content vl-layout vl-region vl-typography">
+    <h2 className="vl-content-header__title vl-content-header__title--has-link">
+      {`Lijst van kandidaten van ${partyName.toUpperCase()}`}
+    </h2>
+    <div className="main-content vl-grid">
+      <CandidateCard onClick={demoPerson.webID ? onClickCandidateCard : null} submitted={demoPerson.webID ? true : false} name={demoPerson.name.value + " " + demoPerson.familyName.value} />
+      {
+        candidates.map((candidate, id) => {
+          return <CandidateCard onClick={candidate.webID ? onClickCandidateCard : null} submitted={candidate.webID ? true : false} name={candidate.name.value + " " + candidate.familyName.value} key={id} />
+        })
+      }
     </div>
   </div>;
 };

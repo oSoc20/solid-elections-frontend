@@ -1,82 +1,94 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import BaseLayout from '../layouts/base';
 import AutoSuggest from 'react-autosuggest'
 
-import { UserService } from '../api'
+import { CityService } from '../api'
+import LocalState from '../utils/state'
 
 const companies = [
-  { id: 1, name: "Company1 Ppp" },
-  { id: 2, name: "Company2" },
-  { id: 3, name: "dompany3" },
-  { id: 4, name: "Company4" },
-  { id: 5, name: "bCompany5" },
-  { id: 6, name: "Company6" },
-  { id: 7, name: "dompany7" }
+  { id: 1, name: "City 1" },
+  { id: 2, name: "City 12" },
+  { id: 3, name: "City 13" },
+  { id: 4, name: "City 14" },
+  { id: 5, name: "City 15" },
+  { id: 6, name: "City 16" },
+  { id: 7, name: "Bity 17" },
+  { id: 8, name: "Bity 18" },
+  { id: 9, name: "Bity 19" }
 ];
 
 
 
 const HomePage = () => {
+  let history = useHistory();
   const [searchTerm, setSearchTerm] = useState()
   //const [suggestions, setSuggestions] = useState([])
-  const [candidates, setCandidates] = useState([])
+  const [cities, setCities] = useState([])
 
 
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
 
-  const lowerCasedCompanies = candidates.map((company, id) => {
+  const lowerCasedCities = cities.map((city, id) => {
     return {
       id: id,
-      firstName: company.firstName.value.toLowerCase(),
-      familyName: company.familyName.value.toLowerCase()
+      name: city.cityName.value.toLowerCase(),
+      uri: city.cityURI.value,
+      label: city.locationLabel.value
+
     };
   });
 
   const getSuggestions = (value) => {
-    return lowerCasedCompanies.filter(company =>
-      company.firstName.includes(value.trim().toLowerCase(),0)
+    return lowerCasedCities.filter(city =>
+      city.name.includes(value.trim().toLowerCase(), 0)
     );
   }
 
-
   useEffect(() => {
-    UserService.getCandidates()
-      .then((res) => {
-        setCandidates(res)
+    if (cities.length === 0) {
+      CityService.getCities()
+        .then((res) => {
+          setCities(res.result)
+        }).catch((e) => console.log('nothing found', e))
+    }
+  }, [cities.length])
 
-      }).catch((e) => console.log('nothing found'))
-  }, [])
+  const goToCity = (cityName) => {
 
-  console.log(candidates)
+    let selectedCity = cities.find(city => {
+      return city.cityName.value.toLowerCase() === cityName
+    })
 
+    LocalState.setCurrentCity(selectedCity.cityURI.value)
+    history.push(`/stad/${selectedCity.cityName.value}`)
+  }
 
   return (
-    <div className="home page__content vl-region">
+    <div className="home page__content vl-region ">
       <div className="vl-layout content__wrapper vl-grid">
         <div className="container__search  vl-col--5-12">
           <div className="au-c-heading au-c-heading--4">
-            Bekijk hier de inkomsten en uitgaven van geldmiddelen
-            tijdens lokale verkiezingscampagnes.
+            Bekijk hier de uitgaven voor de lokale verkiezingscampagne en de herkomst van de middelen hiervoor
           </div>
 
           <AutoSuggest
             suggestions={suggestions}
             onSuggestionsClearRequested={() => setSuggestions([])}
             onSuggestionsFetchRequested={({ value }) => {
-              console.log(value);
               setValue(value);
               setSuggestions(getSuggestions(value));
             }}
-            onSuggestionSelected={(_, { suggestionValue }) =>
-              console.log("Selected: " + suggestionValue)
+            onSuggestionSelected={(_, { suggestionValue }) => {
+              goToCity(suggestionValue)
             }
-            getSuggestionValue={suggestion => suggestion.firstName + ' ' + suggestion.familyName}
-            renderSuggestion={suggestion => <span className="name">{suggestion.firstName + ' ' + suggestion.familyName}</span>}
+            }
+            getSuggestionValue={suggestion => suggestion.name}
+            renderSuggestion={suggestion => <span className="name">{suggestion.name} {`(${suggestion.label})`}</span>}
             inputProps={{
-              placeholder: "Zoek naar een kandidaat of partij",
+              placeholder: "Zoek naar een gemeente",
               value: value,
               onChange: (_, { newValue, method }) => {
                 setValue(newValue);
@@ -84,11 +96,13 @@ const HomePage = () => {
             }}
             highlightFirstSuggestion={true}
           />
-
-
         </div>
-        <div className="main-content vl-col--5-12">
-
+        <div className="vl-typography container__intro vl-col--5-12">
+          <p className="intro--text">
+            In deze applicatie kunt u de herkomst en uitgaven van de gebruikte geldmiddelen bij
+            gemeentelijke verkiezingscampagnes terugvinden. Dit kan zowel voor partijlijsten als
+            voor specifieke kandidaten. In de zoekbalk hiernaast kunt u de gegevens van een specifieke gemeente naar keuze opvragen.
+          </p>
         </div>
       </div>
     </div>
