@@ -8,7 +8,13 @@ export default function Tabel(props) {
     let item = props.data[type].find((item) => {
       return item.identifier === id
     })
-    return item
+
+    if (item) {
+
+      return item
+    } else {
+      return { price: 0 }
+    }
   }
 
   // if (props.data[props.type]) {

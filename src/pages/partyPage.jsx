@@ -42,8 +42,6 @@ const PartyPage = () => {
     }
   }
 
-
-
   return <div className="home page__content vl-layout vl-region vl-typography">
     <h2 className="vl-content-header__title vl-content-header__title--has-link">
       {`Lijst van kandidaten van ${partyName.toUpperCase()}`}

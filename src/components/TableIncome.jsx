@@ -9,7 +9,12 @@ export default function TabelIncome(props) {
     let item = props.data[type].find((item) => {
       return item.identifier === id
     })
-    return item
+    if (item) {
+      return item
+    } else {
+      return { price: 0 }
+
+    }
   }
 
   return (
