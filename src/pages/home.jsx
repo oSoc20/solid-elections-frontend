@@ -12,7 +12,6 @@ const HomePage = () => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-
   const lowerCasedCities = cities.map((city, id) => {
     return {
       id: id,

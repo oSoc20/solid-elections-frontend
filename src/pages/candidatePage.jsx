@@ -6,11 +6,14 @@ import Tabel from '../components/Tabel'
 
 import data from '../utils/demoData'
 import demoPerson from '../utils/demoCandidate'
+import sunData from '../utils/sun_data';
 
 import { getCandidateInfo } from 'solid-wrapper'
 import { CandidateService } from '../api'
 import { sortCandidates } from '../utils/sort'
 import LocalState from '../utils/state'
+import Sunburst from 'sunburst-chart';
+
 
 const DetailPage = () => {
 
@@ -22,6 +25,10 @@ const DetailPage = () => {
   const [currentPersonMoney, setCurrentPersonMoney] = useState([])
 
   const [loading, setLoading] = useState(true)
+
+  //view type: table, sun-income, sun-expense
+  const [viewType, setViewType] = useState('table')
+  const myChart = Sunburst();
 
   const getInfo = async (webId) => {
     let info = await getCandidateInfo(webId, 'solidelections', 'g103.ttl')
@@ -35,18 +42,14 @@ const DetailPage = () => {
     })
 
     if (e.target.getAttribute('data-candidate') === demoPerson.name.value.toLowerCase() + " " + demoPerson.familyName.value.toLowerCase()) {
-      //console.log('demo set')
       LocalState.setCurrentCandidate(demoPerson.personURI.value)
       setLoading(true)
       history.push(`/stad/${cityName}/${partyName}/${demoPerson.name.value + demoPerson.familyName.value}`)
     } else {
-      //console.log('main set')
       LocalState.setCurrentCandidate(selectedCandidate.personURI.value)
       setLoading(true)
       history.push(`/stad/${cityName}/${partyName}/${selectedCandidate.name.value + selectedCandidate.familyName.value}`)
     }
-
-
   }
 
   useEffect(() => {
@@ -92,6 +95,38 @@ const DetailPage = () => {
     }
   }, [candidates, currentPerson, loading])
 
+  
+
+  useEffect(() => {
+
+    // console.log('view chart')
+    // myChart
+    //   .data({
+    //     name: "root",
+    //     children: [
+    //       {
+    //         name: "leafA",
+    //         value: 3
+    //       },
+    //       {
+    //         name: "nodeB",
+    //         children: [
+    //           {
+    //             name: "leafBA",
+    //             value: 5
+    //           },
+    //           {
+    //             name: "leafBB",
+    //             value: 1
+    //           }
+    //         ]
+    //       }
+    //     ]
+    //   })
+    //   (document.getElementById('view'));
+  }, [myChart])
+
+
   return <div className="home page__content vl-region">
     <div className="vl-layout content__wrapper vl-grid">
       <SidePanel onClick={goToCandidate} currentPerson={currentPerson} partyMembers={candidates} />
@@ -110,10 +145,16 @@ const DetailPage = () => {
             </div>
           ) :
           (
-            <>
-              <Tabel generalTexts={data.expenses} data={currentPersonMoney} type="expenses" />
-              <Tabel generalTexts={data.donations} data={currentPersonMoney} type="donations" />
-            </>
+            <div id="view">
+              {
+                viewType === 'table' &&
+                <>
+                  <Tabel generalTexts={data.expenses} data={currentPersonMoney} type="expenses" />
+                  <Tabel generalTexts={data.donations} data={currentPersonMoney} type="donations" />
+                </>
+              }
+
+            </div>
           )
         }
       </div>

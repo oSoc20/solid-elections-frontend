@@ -6,16 +6,16 @@ export default function Tabel(props) {
 
   let tableRows = []
 
+  console.log(props.data)
   if (props.data[props.type]) {
     props.data[props.type].map((item, id) => {
-
       {/* {props.generalTexts.items[id].type === 'main' ? <div key={'main' + id} className="white--space__main"></div> : ""} */ }
       tableRows.push(
         <tr key={id} className={props.generalTexts.items[id].type === 'main' ? "bold ws__top--md" : ""} >
           <td>{props.generalTexts.items[id].number}. </td>
           <td>{props.generalTexts.items[id].message}</td>
           <td>{item.price}</td>
-        </tr >
+        </tr>
       )
       return true
     })

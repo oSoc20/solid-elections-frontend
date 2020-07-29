@@ -27,7 +27,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "solid-wrapper": "https://github.com/oSoc20/solid-elections-wrapper"
+    "solid-wrapper": "https://github.com/oSoc20/solid-elections-wrapper",
+    "sunburst-chart": "^1.11.2"
   },
   "scripts": {
     "start": "react-scripts start",
