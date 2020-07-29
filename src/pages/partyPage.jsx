@@ -42,12 +42,14 @@ const PartyPage = () => {
     }
   }
 
+
+
   return <div className="home page__content vl-layout vl-region vl-typography">
     <h2 className="vl-content-header__title vl-content-header__title--has-link">
       {`Lijst van kandidaten van ${partyName.toUpperCase()}`}
     </h2>
     <div className="main-content vl-grid">
-      <CandidateCard onClick={demoPerson.webID ? onClickCandidateCard : null} submitted={demoPerson.webID ? true : false} name={demoPerson.name.value + " " + demoPerson.familyName.value} />
+      {/* <CandidateCard onClick={demoPerson.webID ? onClickCandidateCard : null} submitted={demoPerson.webID ? true : false} name={demoPerson.name.value + " " + demoPerson.familyName.value} /> */}
       {
         candidates.map((candidate, id) => {
           return <CandidateCard onClick={candidate.webID ? onClickCandidateCard : null} submitted={candidate.webID ? true : false} name={candidate.name.value + " " + candidate.familyName.value} key={id} />

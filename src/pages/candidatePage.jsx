@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, withRouter, useParams } from 'react-router-dom';
 
 import SidePanel from '../components/SidePanel'
-import Tabel from '../components/Tabel'
+import TabelExpense from '../components/TabelExpense'
+import TabelIncome from '../components/TableIncome'
 
-import data from '../utils/demoData'
+import textData from '../utils/textData'
 import demoPerson from '../utils/demoCandidate'
 import sunData from '../utils/sun_data';
 
@@ -29,6 +30,100 @@ const DetailPage = () => {
   //view type: table, sun-income, sun-expense
   const [viewType, setViewType] = useState('table')
   const myChart = Sunburst();
+
+
+  let changeView = (e) => {
+    let view = e.target.getAttribute('data-view')
+    let sunBursts = document.getElementsByClassName('sunburst-viz')
+
+    if (view === 'table') {
+
+      for (var i = 0; i < sunBursts.length; i++) {
+        sunBursts[i].remove()
+      }
+    }
+    setViewType(view)
+  }
+
+  let getIncomeDataForSun = () => {
+    let income = {
+      name: textData.donations.shortTitle,
+      color: textData.donations.color,
+      children: []
+    }
+
+    if (currentPersonMoney.donations) {
+      currentPersonMoney.donations.map((donation, id) => {
+        if (textData.donations.items[id].type === 'main') {
+          income.children.push({
+            name: textData.donations.items[id].short,
+            color: textData.donations.items[id].color,
+            children: [],
+            value: donation.price
+          })
+        }
+
+        if (textData.donations.items[id].type === 'sub') {
+          income.children[income.children.length - 1].children.push({
+            name: textData.donations.items[id].short,
+            color: textData.donations.items[id].color,
+            value: donation.price
+          })
+        }
+        return true
+      })
+    }
+
+    return income
+  }
+
+  let getExpenseDataForSun = () => {
+    let income = {
+      name: textData.expenses.shortTitle,
+      color: textData.expenses.color,
+      children: []
+    }
+
+    if (currentPersonMoney.expenses) {
+      currentPersonMoney.expenses.map((expense, id) => {
+        if (textData.expenses.items[id].type === 'main') {
+          income.children.push({
+            name: textData.expenses.items[id].short,
+            color: textData.expenses.items[id].color,
+            children: []
+          })
+        }
+
+        if (textData.expenses.items[id].type === 'sub') {
+          income.children[income.children.length - 1].children.push({
+            name: textData.expenses.items[id].short,
+            color: textData.expenses.items[id].color,
+            value: expense.price,
+            children: []
+          })
+        }
+
+        if (textData.expenses.items[id].type === 'sub-sub') {
+          let lastSubIndex = income.children[income.children.length - 1].children.length - 1
+
+          //set to 0, total of children are counted to parent
+          income.children[income.children.length - 1].children[lastSubIndex].value = 0
+          income.children[income.children.length - 1].children[lastSubIndex].children.push({
+            name: textData.expenses.items[id].short,
+            color: textData.expenses.items[id].color,
+            value: expense.price
+          })
+        }
+        return true
+      })
+    }
+    return income
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
 
   const getInfo = async (webId) => {
     let info = await getCandidateInfo(webId, 'solidelections', 'g103.ttl')
@@ -95,41 +190,52 @@ const DetailPage = () => {
     }
   }, [candidates, currentPerson, loading])
 
-  
+
 
   useEffect(() => {
 
-    // console.log('view chart')
-    // myChart
-    //   .data({
-    //     name: "root",
-    //     children: [
-    //       {
-    //         name: "leafA",
-    //         value: 3
-    //       },
-    //       {
-    //         name: "nodeB",
-    //         children: [
-    //           {
-    //             name: "leafBA",
-    //             value: 5
-    //           },
-    //           {
-    //             name: "leafBB",
-    //             value: 1
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   })
-    //   (document.getElementById('view'));
-  }, [myChart])
+    let removeExtraSun = () => {
+      let sunBursts = document.getElementsByClassName('sunburst-viz')
+
+      for (var i = 0; i < sunBursts.length - 1; i++) {
+        sunBursts[i].remove()
+      }
+
+    }
+    if (!loading) {
+      if (viewType === "sun-income") {
+
+        myChart
+          .data(getIncomeDataForSun())
+          .label('name')
+          .tooltipContent((d, node) => `EUR: <i>${node.value}</i>`)
+          .width(1000)
+          .height(1000)
+          .color('color')
+          (document.getElementById('view'));
+
+        removeExtraSun()
+      }
+
+      if (viewType === "sun-expense") {
+
+        myChart
+          .data(getExpenseDataForSun())
+          .label('name')
+          .tooltipContent((d, node) => `EUR: <i>${node.value}</i>`)
+          .width(1000)
+          .height(1000)
+          .color('color')
+          (document.getElementById('view'));
+        removeExtraSun()
+      }
+    }
+  }, [loading, myChart, viewType])
 
 
   return <div className="home page__content vl-region">
     <div className="vl-layout content__wrapper vl-grid">
-      <SidePanel onClick={goToCandidate} currentPerson={currentPerson} partyMembers={candidates} />
+      <SidePanel changeView={changeView} currentView={viewType} onClick={goToCandidate} currentPerson={currentPerson} partyMembers={candidates} />
       <div className="main-content vl-col--9-12">
         {loading ?
           (
@@ -149,11 +255,10 @@ const DetailPage = () => {
               {
                 viewType === 'table' &&
                 <>
-                  <Tabel generalTexts={data.expenses} data={currentPersonMoney} type="expenses" />
-                  <Tabel generalTexts={data.donations} data={currentPersonMoney} type="donations" />
+                  <TabelExpense generalTexts={textData.expenses} data={currentPersonMoney} type="expenses" />
+                  <TabelIncome generalTexts={textData.expenses} data={currentPersonMoney} type="donations" />
                 </>
               }
-
             </div>
           )
         }

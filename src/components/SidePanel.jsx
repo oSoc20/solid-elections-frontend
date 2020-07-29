@@ -36,14 +36,19 @@ let SidePanel = (props) => {
         </span>{` ${cityName}`}</p></div>
       </div>
       <div className="person__declaration--data--list seperator">
-        <div className="person__declaration--data--list--item">
-          <a href="/home" className="selected"> Bekijk gedetailleerde tabel</a>
+        <div onClick={props.changeView} data-view="table"
+          className={props.currentView === 'table' ? "person__declaration--data--list--item selected" : "person__declaration--data--list--item"}>
+          Bekijk gedetailleerde tabel
         </div>
-        <div className="person__declaration--data--list--item ">
-          <a href="/home" className=""> Bekijk uitgavengrafiek</a>
+        <div onClick={props.changeView} data-view="sun-expense"
+          className={props.currentView === 'sun-expense' ? "person__declaration--data--list--item selected" : "person__declaration--data--list--item"}
+        >
+          Bekijk uitgavengrafiek
         </div>
-        <div className="person__declaration--data--list--item ">
-          <a href="/home" className=""> Bekijk inkomstengrafiek</a>
+        <div onClick={props.changeView} data-view="sun-income"
+          className={props.currentView === 'sun-income' ? "person__declaration--data--list--item selected" : "person__declaration--data--list--item"}
+        >
+          Bekijk inkomstengrafiek
         </div>
       </div>
       <div className="person__info__party__members">
@@ -51,7 +56,9 @@ let SidePanel = (props) => {
 
         <div className="members__list">
 
-          <div onClick={props.onClick} data-candidate={demoPerson.name.value.toLocaleLowerCase() + " " + demoPerson.familyName.value.toLocaleLowerCase()} className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value) ? "members--person selected" : "members--person bold"}>
+
+          {/* demo person */}
+          {/* <div onClick={props.onClick} data-candidate={demoPerson.name.value.toLocaleLowerCase() + " " + demoPerson.familyName.value.toLocaleLowerCase()} className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value) ? "members--person selected" : "members--person bold"}>
             <div data-candidate={demoPerson.name.value + " " + demoPerson.familyName.value} className={isCurrentCandidate(demoPerson.name.value, demoPerson.familyName.value)
               ? `vl-badge vl-badge--initials vl-badge--action`
               : "vl-badge vl-badge--initials vl-badge--alt"}>
@@ -59,8 +66,8 @@ let SidePanel = (props) => {
             </div>
             <div data-candidate={demoPerson.name.value.toLocaleLowerCase() + " " + demoPerson.familyName.value.toLocaleLowerCase()}
               className="member--name">{demoPerson.name.value}  {demoPerson.familyName.value}</div>
-          </div>
-
+          </div> */}
+          {/* end demo person */}
 
           {(props.partyMembers && props.currentPerson.name) &&
             props.partyMembers.map((member, id) => {
