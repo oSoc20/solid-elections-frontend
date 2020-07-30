@@ -1,4 +1,24 @@
+
+# SOLID ELECTIONS - Magic By oSoc 2020
+
+In  any  given  election, certain procedures must be followed  to ensure adherence  to  democratic principles.  These  procedures  come with  a vast amount of paperwork for all actors involved. One of the steps in the election process is the declaration  of  funds  raised and  expenses  made  during  the  campaigns. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Private Packages
+    `@govflanders/vl-ui-badge": "^3.11.4",
+    "@govflanders/vl-ui-content-header": "^3.11.4",
+    "@govflanders/vl-ui-core": "^4.0.4",
+    "@govflanders/vl-ui-data-table": "^3.11.4",
+    "@govflanders/vl-ui-icon": "^3.11.4",
+    "@govflanders/vl-ui-loader": "^3.11.4",
+    "@govflanders/vl-ui-search": "^3.11.4",
+    "@govflanders/vl-ui-titles": "^3.11.4",
+    "@govflanders/vl-ui-typography": "^3.11.4",
+    "@govflanders/vl-ui-util": "^3.11.4", ` 
+
+    These packages are private. You might need to contact [Vlaanderen](https://overheid.vlaanderen.be/webuniversum/v3/)
 
 ## Available Scripts
 

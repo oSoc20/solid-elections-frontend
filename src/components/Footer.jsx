@@ -25,11 +25,11 @@ export default function Footer() {
           <p>Uitgegeven door <a className="au-c-link" href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur">Agentschap Binnenlands Bestuur</a></p>
           <ul className="au-c-list-horizontal">
             <li className="au-c-list-horizontal__item">
-              <a href="/ember-appuniversum/" id="ember443" className="ember-view au-c-link au-c-link--secondary ">
+              <a href="https://www.vlaanderen.be/over-vlaanderenbe/disclaimer" id="ember443" className="ember-view au-c-link au-c-link--secondary ">
                 Disclaimer</a>
             </li>
             <li className="au-c-list-horizontal__item">
-              <a href="/ember-appuniversum/" id="ember444" className="ember-view au-c-link au-c-link--secondary ">
+              <a href="https://www.vlaanderen.be/over-vlaanderenbe/cookieverklaring-vlaanderenbe" id="ember444" className="ember-view au-c-link au-c-link--secondary ">
                 Cookieverklaring</a>
             </li>
           </ul>
