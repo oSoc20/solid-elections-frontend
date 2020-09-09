@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -29,9 +29,7 @@ export default function Header() {
               <svg role="img" className="au-c-icon au-c-icon--question-circle au-c-icon--left " aria-hidden="true">
                 <use xlinkHref="/ember-appuniversum/@appuniversum/ember-appuniversum/appuniversum-symbolset.svg#question-circle"></use>
               </svg>
-              <a href="https://www.vlaanderen.be/" className="au-c-main-header__title au-c-main-header__title--link">
-                CONTACT ONS
-      </a>
+              <Link className="au-c-main-header__title au-c-main-header__title--link" to="/contact">Contacteer ons</Link>
             </a>
           </li>
         </ul>

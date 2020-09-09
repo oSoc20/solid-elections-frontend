@@ -52,7 +52,7 @@ const HomePage = () => {
       <div className="vl-layout content__wrapper vl-grid">
         <div className="container__search  vl-col--5-12">
           <div className="au-c-heading au-c-heading--4">
-            Bekijk hier de uitgaven voor de lokale verkiezingscampagne en de herkomst van de middelen hiervoor
+            Bekijk hier de verkiezingsuitgaven en de herkomst van de geldmiddelen voor de lokale en provinciale verkiezingen
           </div>
 
           <AutoSuggest
@@ -80,9 +80,9 @@ const HomePage = () => {
         </div>
         <div className="vl-typography container__intro vl-col--5-12">
           <p className="intro--text">
-            In deze applicatie kunt u de herkomst en uitgaven van de gebruikte geldmiddelen bij
-            gemeentelijke verkiezingscampagnes terugvinden. Dit kan zowel voor partijlijsten als
-            voor specifieke kandidaten. In de zoekbalk hiernaast kunt u de gegevens van een specifieke gemeente naar keuze opvragen.
+            In deze applicatie kunt u de verkiezingsuitgaven en de herkomst van de geldmiddelen voor de lokale en provinciale verkiezingen terugvinden. 
+            Dit kan zowel voor lijsten als voor specifieke kandidaten. 
+            In de zoekbalk hiernaast kunt u de gegevens van een specifieke gemeente, provincie of stadsdistrict naar keuze opvragen.
           </p>
         </div>
       </div>

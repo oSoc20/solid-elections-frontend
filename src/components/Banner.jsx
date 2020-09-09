@@ -13,7 +13,7 @@ let Banner = ({ match }) => {
         <div className="vl-layout">
           <div className="vl-content-header__content">
             <div className=" vl-content-header__content vl-content-header__context vl-content-header__context--has-link">
-              <Link className="vl-content-header__context__link" to="/">Campaigndetail database </Link>
+              <Link className="vl-content-header__context__link" to="/">Inzage verkiezingsuitgaven </Link>
             </div>
             {match.path.includes('/stad/', 0) &&
               <h2 className="vl-content-header__title vl-content-header__title--has-link">

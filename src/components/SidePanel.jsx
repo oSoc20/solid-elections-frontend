@@ -52,7 +52,7 @@ let SidePanel = (props) => {
         </div>
       </div>
       <div className="person__info__party__members">
-        <h4 className="vl-title vl-title--h4 vl-title--sans">Lokale partijleden</h4>
+        <h4 className="vl-title vl-title--h4 vl-title--sans">Kandidaten</h4>
 
         <div className="members__list">
 
