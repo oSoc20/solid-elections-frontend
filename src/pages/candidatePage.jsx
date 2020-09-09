@@ -126,7 +126,7 @@ const DetailPage = () => {
 
 
   const getInfo = async (webId) => {
-    let info = await getCandidateInfo(webId, 'solidelections', 'g103.ttl')
+    let info = await getCandidateInfo(webId, 'solidelections', 'a105.ttl')
     return info
   }
 
