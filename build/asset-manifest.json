@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/solid-elections-frontend/static/css/main.8e67ae76.chunk.css",
-    "main.js": "/solid-elections-frontend/static/js/main.fb8eae3c.chunk.js",
-    "main.js.map": "/solid-elections-frontend/static/js/main.fb8eae3c.chunk.js.map",
+    "main.css": "/solid-elections-frontend/static/css/main.c59edab8.chunk.css",
+    "main.js": "/solid-elections-frontend/static/js/main.a0382563.chunk.js",
+    "main.js.map": "/solid-elections-frontend/static/js/main.a0382563.chunk.js.map",
     "runtime-main.js": "/solid-elections-frontend/static/js/runtime-main.9b0e8b87.js",
     "runtime-main.js.map": "/solid-elections-frontend/static/js/runtime-main.9b0e8b87.js.map",
-    "static/js/2.b4e86e5f.chunk.js": "/solid-elections-frontend/static/js/2.b4e86e5f.chunk.js",
-    "static/js/2.b4e86e5f.chunk.js.map": "/solid-elections-frontend/static/js/2.b4e86e5f.chunk.js.map",
+    "static/js/2.902b56b9.chunk.js": "/solid-elections-frontend/static/js/2.902b56b9.chunk.js",
+    "static/js/2.902b56b9.chunk.js.map": "/solid-elections-frontend/static/js/2.902b56b9.chunk.js.map",
     "index.html": "/solid-elections-frontend/index.html",
-    "precache-manifest.f907c855f536452a665f1bf19f134d29.js": "/solid-elections-frontend/precache-manifest.f907c855f536452a665f1bf19f134d29.js",
+    "precache-manifest.a5cc265e49cf7fc221b15d268a2a6067.js": "/solid-elections-frontend/precache-manifest.a5cc265e49cf7fc221b15d268a2a6067.js",
     "service-worker.js": "/solid-elections-frontend/service-worker.js",
-    "static/css/main.8e67ae76.chunk.css.map": "/solid-elections-frontend/static/css/main.8e67ae76.chunk.css.map",
-    "static/js/2.b4e86e5f.chunk.js.LICENSE.txt": "/solid-elections-frontend/static/js/2.b4e86e5f.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/solid-elections-frontend/static/media/logo.5d5d9eef.svg"
+    "static/css/main.c59edab8.chunk.css.map": "/solid-elections-frontend/static/css/main.c59edab8.chunk.css.map",
+    "static/js/2.902b56b9.chunk.js.LICENSE.txt": "/solid-elections-frontend/static/js/2.902b56b9.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/solid-elections-frontend/static/media/logo.ee7cd8ed.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.9b0e8b87.js",
-    "static/js/2.b4e86e5f.chunk.js",
-    "static/css/main.8e67ae76.chunk.css",
-    "static/js/main.fb8eae3c.chunk.js"
+    "static/js/2.902b56b9.chunk.js",
+    "static/css/main.c59edab8.chunk.css",
+    "static/js/main.a0382563.chunk.js"
   ]
 }

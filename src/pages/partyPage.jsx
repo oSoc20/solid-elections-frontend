@@ -44,7 +44,7 @@ const PartyPage = () => {
 
   return <div className="home page__content vl-layout vl-region vl-typography">
     <h2 className="vl-content-header__title vl-content-header__title--has-link">
-      {`Kandidatenlijsten van ${partyName.toUpperCase()}`}
+      {`Kandidaten van ${partyName.toUpperCase()}`}
     </h2>
     <div className="main-content vl-grid">
       {/* <CandidateCard onClick={demoPerson.webID ? onClickCandidateCard : null} submitted={demoPerson.webID ? true : false} name={demoPerson.name.value + " " + demoPerson.familyName.value} /> */}
