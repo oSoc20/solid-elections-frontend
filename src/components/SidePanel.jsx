@@ -86,10 +86,10 @@ let SidePanel = (props) => {
                   </div>)
               } else {
                 return (
-                  <div onClick={props.onClick} key={id} data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()} className="members--person detail__member--disable">
+                  <div key={id} data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()} className="members--person detail__member--disable">
                     <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
                       className="vl-badge vl-badge--initials vl-badge--alt">
-                      <span>{id + 2}</span>
+                      <span>{id + 1}</span>
                     </div>
                     <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
                       className="member--name">{member.name.value}  {member.familyName.value}</div>
