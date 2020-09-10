@@ -79,7 +79,7 @@ let SidePanel = (props) => {
                       className={isCurrentCandidate(member.name.value, member.familyName.value)
                         ? `vl-badge vl-badge--initials vl-badge--action`
                         : "vl-badge vl-badge--initials vl-badge--alt"}>
-                      <span>{id + 2}</span>
+                      <span>{id + 1}</span>
                     </div>
                     <div data-candidate={member.name.value.toLocaleLowerCase() + " " + member.familyName.value.toLocaleLowerCase()}
                       className="member--name">{member.name.value}  {member.familyName.value}</div>
